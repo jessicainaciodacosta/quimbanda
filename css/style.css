@@ -22,15 +22,15 @@
    
    /* Links */
    a {
-     color: #800020;
+     color: #800020; /* bordô/vinho sofisticado */
      text-decoration: none;
      transition: color 0.2s ease;
    }
    
    a:hover,
    a:focus {
-     color: #600016;
-     text-decoration: none;
+     color: #600016; /* bordô mais escuro no hover */
+     text-decoration: underline;
    }
    
    /* Headings */
@@ -109,11 +109,7 @@
      color: #800020;
    }
    
-   /* Ícone “hambúrguer” para mobile (Bootstrap já inclui) */
-   .navbar-toggleable-md .navbar-toggler {
-     border-color: rgba(255, 255, 255, 0.3);
-   }
-   
+   /* Ícone “hambúrguer” para mobile (Bootstrap) */
    .navbar-toggler-icon {
      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
    }
@@ -238,7 +234,7 @@
    
    #services .box {
      background-color: transparent;
-     border: 1px solid rgba(255,255,255,0.15);
+     border: 1px solid rgba(255, 255, 255, 0.15);
      padding: 30px;
      text-align: center;
      transition: background-color 0.2s, border-color 0.2s;
@@ -246,7 +242,7 @@
    }
    
    #services .box:hover {
-     background-color: rgba(233,78,27,0.1);
+     background-color: rgba(128, 0, 32, 0.1);
      border-color: #800020;
    }
    
@@ -333,6 +329,53 @@
    
    #footer a:hover {
      color: #600016;
+   }
+   
+   /* ==========================================================================
+      OVERRIDES – FORÇANDO CORES BORDE E HOVER
+      ========================================================================== */
+   /* Qualquer estilo inline ou plugin que ainda possua laranja será sobrescrito */
+   *[style*="#e94e1b"] {
+     background-color: #800020 !important;
+     border-color: #800020 !important;
+     color: #800020 !important;
+   }
+   
+   /* Forçar hover geral */
+   a:hover,
+   a:focus {
+     color: #600016 !important;
+   }
+   
+   /* Botões primários (caso algum plugin use .btn-primary em laranja) */
+   .btn-primary,
+   .btn-primary:hover,
+   .btn-primary:focus,
+   .btn-primary:active,
+   .btn-primary:visited {
+     background-color: #800020 !important;
+     border-color: #600016 !important;
+     color: #fff !important;
+   }
+   
+   /* Carousel Controls (caso existam ainda) */
+   .carousel-control-next-icon,
+   .carousel-control-prev-icon {
+     background-color: #800020 !important;
+   }
+   
+   /* Forçar botão de contato */
+   #contact .contactForm button {
+     background-color: #800020 !important;
+   }
+   
+   #contact .contactForm button:hover {
+     background-color: #600016 !important;
+   }
+   
+   /* Forçar borda bordô em serviços fora do hover */
+   #services .box {
+     border-color: #800020 !important;
    }
    
    /* ==========================================================================
