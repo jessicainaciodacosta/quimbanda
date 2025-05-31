@@ -2,88 +2,363 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <title>Quimbanda de Angola – Mametu Jessicão da Tabajira</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mametu Nganga Njinga wa Pambu</title>
+
+  <!-- === Google Fonts === -->
+  <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,400i,600,700" rel="stylesheet">
+
+  <!-- === Bootstrap CSS === -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- === Font Awesome (para ícones, se quiser) === -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- === CSS principal (style.css) === -->
+  <link href="css/style.css" rel="stylesheet">
+
   <style>
+    /* ===========================
+       REDEFINIÇÕES RÁPIDAS DE CSS
+       (apenas para este exemplo funcionar imediatamente)
+    ============================ */
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #1a1a1a;
-      color: #e0e0e0;
+      font-family: "Dosis", sans-serif;
+      background-color: #111;      /* fundo escuro para todo o site */
+      color: #eee;
     }
-    header {
-      background-color: #4b0000;
-      padding: 30px 20px;
-      text-align: center;
+
+    /* ===========================
+       HEADER / MENU
+    ============================ */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: transparent;    /* vamos deixar transparente sobre a imagem */
+      z-index: 1000;
+      padding: 15px 20px;
+      transition: background 0.3s ease;
     }
-    header h1 {
+
+    /* Quando rolar a página, poderá adicionar uma cor de fundo ao header */
+    #header.scroll-header {
+      background: #1a1a1a;        /* fundo preto escuro quando scroll */
+    }
+
+    /* Logo / nome no canto esquerdo */
+    #logo h1 {
       margin: 0;
-      font-size: 2.2rem;
-      color: #f5f5f5;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #e94e1b;            /* cor laranja/avermelhada */
     }
-    header p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-    .container {
-      padding: 30px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .button-whatsapp {
-      display: inline-block;
-      margin: 20px 0;
-      background-color: #25D366;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 6px;
+    #logo h1 a {
       text-decoration: none;
-      font-weight: bold;
+      color: inherit;
     }
-    .social-links a {
-      margin-right: 15px;
-      color: #bbb;
-      text-decoration: none;
+
+    /* Menu de navegação, no canto direito */
+    #nav-menu-container {
+      float: right;
     }
-    .social-links a:hover {
+    #nav-menu-container .nav-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    #nav-menu-container .nav-menu li {
+      margin-left: 25px;
+    }
+    #nav-menu-container .nav-menu li a {
       color: #fff;
-    }
-    footer {
-      background-color: #111;
-      text-align: center;
-      padding: 15px;
+      text-decoration: none;
+      font-weight: 500;
       font-size: 0.9rem;
-      color: #777;
-      margin-top: 40px;
+      transition: color 0.2s;
     }
+    #nav-menu-container .nav-menu li a:hover,
+    #nav-menu-container .nav-menu li.menu-active a {
+      color: #e94e1b; /* cor laranja */
+    }
+
+    /* ===========================
+       INTRO (IMAGEM FIXA)
+    ============================ */
+    #intro {
+      position: relative;
+      width: 100%;
+      height: 100vh;              /* ocupa 100% da altura da viewport */
+      overflow: hidden;
+    }
+    #intro .intro-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;          /* cobre todo o espaço */
+      z-index: 1;
+    }
+    #intro .intro-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+    #intro .intro-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+    #intro .intro-content p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      max-width: 600px;
+    }
+    #intro .intro-content .btn-agendar {
+      background: #e94e1b;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    #intro .intro-content .btn-agendar:hover {
+      background: #c83714;
+    }
+
+    /* ===========================
+       SEÇÕES INTERNAS (Favor substituir por seções reais)
+    ============================ */
+    section {
+      padding: 80px 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-header h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .section-header p {
+      color: #ccc;
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Exemplos de placeholders para as seções “Sobre”, “Serviços”, “Contato” */
+    #about { background: #1a1a1a; }
+    #services { background: #111; }
+    #contact { background: #1a1a1a; }
+
+    /* ===========================
+       RODAPÉ
+    ============================ */
+    #footer {
+      background: #111;
+      padding: 25px 0;
+      color: #777;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    #footer a {
+      color: #e94e1b;
+      text-decoration: none;
+    }
+    #footer a:hover {
+      color: #c83714;
+    }
+
   </style>
+
 </head>
 <body>
-  <header>
-    <h1>Mametu Nganga Njinga wa Pambu</h1>
-    <p>Quimbanda de Angola</p>
+
+  <!-- ==========================
+     HEADER / MENU FIXO
+  =========================== -->
+  <header id="header">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <!-- LOGO | NOME -->
+      <div id="logo">
+        <h1><a href="#intro">Mametu Jessicão da Tabajira</a></h1>
+      </div>
+
+      <!-- MENU DE NAVEGAÇÃO -->
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#intro">Home</a></li>
+          <li><a href="#about">[SOBRE]</a></li>
+          <li><a href="#services">[SERVIÇOS]</a></li>
+          <li><a href="#contact">[CONTATO]</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <div class="container">
-    <h2>Sobre</h2>
-    <p>Trabalho com orientação espiritual dentro da tradição da Quimbanda de Angola. Realizo atendimentos individuais com base no jogo de búzios, orientação com os Nkisi, firmezas, oferendas e acompanhamento espiritual.</p>
+  <!-- ==========================
+     INTRO – IMAGEM FIXA (HERO)
+  =========================== -->
+  <section id="intro">
+    <div class="intro-container">
+      <!-- FOTO DE FUNDO – coloque o arquivo onca.jpg dentro de img/ -->
+      <img src="img/onca.jpg" alt="Imagem de capa">
 
-    <h2>Agendamentos</h2>
-    <p>Entre em contato diretamente pelo WhatsApp para agendar sua consulta:</p>
-    <a href="https://wa.me/5583999999999?text=Olá%2C+gostaria+de+agendar+uma+consulta" target="_blank" class="button-whatsapp">
-      Agendar pelo WhatsApp
-    </a>
-
-    <h2>Redes Sociais</h2>
-    <div class="social-links">
-      <a href="https://instagram.com/seuperfil" target="_blank">Instagram</a>
-      <a href="https://tiktok.com/@seuperfil" target="_blank">TikTok</a>
+      <!-- CONTEÚDO SOBREPOSTO À IMAGEM -->
+      <div class="intro-content">
+        <h1>Mametu Jessicão da Tabajira</h1>
+        <p>Quimbanda de Angola | Jogos de Búzios | Consultas e Trabalhos Espirituais</p>
+        <a href="#contact" class="btn-agendar">Agende sua consulta</a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <footer>
-    &copy; 2025 Mametu Nganga Njinga wa Pambu – Todos os direitos reservados.
+  <!-- ==========================
+     SEÇÃO SOBRE (PLACEHOLDER)
+  =========================== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h3>[SOBRE]</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+      </div>
+      <!-- Aqui você pode adicionar colunas, imagens, texto real etc. -->
+      <div class="row">
+        <div class="col-lg-4">
+          <h4>Missão</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="col-lg-4">
+          <h4>Visão</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.</p>
+        </div>
+        <div class="col-lg-4">
+          <h4>Valores</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae sapien ut libero venenatis faucibus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================
+     SEÇÃO SERVIÇOS (PLACEHOLDER)
+  =========================== -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <h3>[SERVIÇOS]</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="box">
+            <i class="fa fa-gamepad fa-2x" style="color:#e94e1b;"></i>
+            <h4 class="title">Jogo de Búzios</h4>
+            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam libero tempore, cum soluta nobis est eligendi.</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="box">
+            <i class="fa fa-handshake-o fa-2x" style="color:#e94e1b;"></i>
+            <h4 class="title">Consultas Espirituais</h4>
+            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="box">
+            <i class="fa fa-fire fa-2x" style="color:#e94e1b;"></i>
+            <h4 class="title">Trabalhos de Firmeza</h4>
+            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis autem vel eum iure reprehenderit qui in.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================
+     SEÇÃO CONTATO (PLACEHOLDER)
+  =========================== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h3>[CONTATO]</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <p><strong>E-mail:</strong> exemplo@quimbanda.com</p>
+          <p><strong>WhatsApp:</strong> +55 (83) 9 8888-7777</p>
+          <p><strong>Instagram:</strong> @seu_perfil</p>
+        </div>
+        <div class="col-lg-6">
+          <!-- Formulário simples (você pode usar Formspree ou outro serviço) -->
+          <form action="https://formspree.io/seu-email" method="POST" class="contactForm">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" name="name" class="form-control" placeholder="Seu nome" />
+              </div>
+              <div class="form-group col-md-6">
+                <input type="email" name="email" class="form-control" placeholder="Seu e-mail" />
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea name="message" rows="5" class="form-control" placeholder="Sua mensagem"></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-agendar">Enviar Mensagem</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================
+     RODAPÉ
+  =========================== -->
+  <footer id="footer">
+    <div class="container">
+      <p>&copy; 2025 Mametu Jessicão da Tabajira – Todos os direitos reservados.</p>
+      <p>Site desenvolvido por você mesmo</p>
+    </div>
   </footer>
+
+  <!-- ==========================
+     SCRIPTS (JS) – REMOVA CARROSSEL/OWL CAROUSEL
+  =========================== -->
+  <!-- Apenas carregue o JS necessário do Bootstrap, sem plugins de carrossel antigos -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Um script simples para adicionar classe no header quando rolar a página -->
+  <script>
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scroll-header');
+      } else {
+        header.classList.remove('scroll-header');
+      }
+    });
+  </script>
+
 </body>
 </html>
