@@ -22,14 +22,14 @@
    
    /* Links */
    a {
-     color: #e94e1b;
+     color: #800020;
      text-decoration: none;
      transition: color 0.2s ease;
    }
    
    a:hover,
    a:focus {
-     color: #c83714;
+     color: #600016;
      text-decoration: none;
    }
    
@@ -76,7 +76,7 @@
      margin: 0;
      font-size: 1.6rem;
      font-weight: 700;
-     color: #e94e1b;
+     color: #800020;
    }
    
    #logo h1 a {
@@ -106,7 +106,7 @@
    
    .nav-menu li a:hover,
    .nav-menu li.menu-active a {
-     color: #e94e1b;
+     color: #800020;
    }
    
    /* Ícone “hambúrguer” para mobile (Bootstrap já inclui) */
@@ -162,7 +162,7 @@
    }
    
    #intro .intro-content .btn-agendar {
-     background-color: #e94e1b;
+     background-color: #800020;
      color: #fff;
      padding: 12px 28px;
      border-radius: 4px;
@@ -172,7 +172,7 @@
    }
    
    #intro .intro-content .btn-agendar:hover {
-     background-color: #c83714;
+     background-color: #600016;
    }
    
    /* Espaço para não sobrepor conteúdo abaixo do header fixo */
@@ -247,12 +247,12 @@
    
    #services .box:hover {
      background-color: rgba(233,78,27,0.1);
-     border-color: #e94e1b;
+     border-color: #800020;
    }
    
    #services .box i {
      margin-bottom: 15px;
-     color: #e94e1b;
+     color: #800020;
    }
    
    #services .box .title {
@@ -287,13 +287,13 @@
    
    #contact .form-control:focus {
      background-color: #222;
-     border-color: #e94e1b;
+     border-color: #800020;
      outline: none;
      color: #fff;
    }
    
    #contact .contactForm button {
-     background-color: #e94e1b;
+     background-color: #800020;
      color: #fff;
      border: none;
      padding: 10px 25px;
@@ -304,7 +304,7 @@
    }
    
    #contact .contactForm button:hover {
-     background-color: #c83714;
+     background-color: #600016;
    }
    
    #contact p strong {
@@ -328,11 +328,11 @@
    }
    
    #footer a {
-     color: #e94e1b;
+     color: #800020;
    }
    
    #footer a:hover {
-     color: #c83714;
+     color: #600016;
    }
    
    /* ==========================================================================
@@ -342,7 +342,7 @@
      position: fixed;
      bottom: 30px;
      right: 30px;
-     background-color: #e94e1b;
+     background-color: #800020;
      color: #fff;
      width: 40px;
      height: 40px;
@@ -356,7 +356,7 @@
    }
    
    .back-to-top:hover {
-     background-color: #c83714;
+     background-color: #600016;
    }
    
    /* ==========================================================================
