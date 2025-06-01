@@ -60,17 +60,21 @@
      left: 0;
      width: 100%;
      z-index: 1000;
-     background: transparent;
-     transition: background 0.3s ease;
-     padding: 15px 20px;
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
+       background-color: rgba(0, 0, 0, 0.5);
+       backdrop-filter: blur(4px);
+       transition: background 0.3s ease;
+       padding: 15px 20px;
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
    }
    
    #header.scroll-header {
-     background-color: #1a1a1a;
-   }
+   background-color: rgba(17, 17, 17, 0.85); /* preto translúcido */
+   backdrop-filter: blur(4px); /* suaviza o conteúdo atrás */
+}
+
+   
    
    #logo h1 {
      margin: 0;
