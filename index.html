@@ -12,13 +12,11 @@
   <!-- === Bootstrap CSS === -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- === Font Awesome (para ícones, se quiser) === -->
+  <!-- === Font Awesome (para ícones) === -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- === CSS principal (style.css) === -->
   <link href="css/style.css" rel="stylesheet">
-
-
 </head>
 <body>
 
@@ -36,9 +34,9 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">[SOBRE]</a></li>
-          <li><a href="#services">[SERVIÇOS]</a></li>
-          <li><a href="#contact">[CONTATO]</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#contact">Contato</a></li>
         </ul>
       </nav>
     </div>
@@ -48,74 +46,73 @@
      INTRO – IMAGEM FIXA (HERO)
   =========================== -->
   <section id="intro">
-  <div class="intro-container">
-    <div id="intro-overlay" style="position: absolute; inset: 0; background-color: rgba(0,0,0,0); z-index: 1; transition: background-color 0.4s ease;"></div>
-    <div class="intro-content">
-      <h1>Mametu Jessicão da Tabajira</h1>
-      <p>Quimbanda de Angola | Jogos de Búzios | Consultas e Trabalhos Espirituais</p>
-      <a href="#contact" class="btn-agendar">Agende sua consulta</a>
+    <!-- O div #intro-overlay não é estritamente necessário aqui se o ::before faz o trabalho, mas não prejudica -->
+    <!-- <div id="intro-overlay" style="position: absolute; inset: 0; z-index: 1;"></div> -->
+    <div class="intro-container">
+      <div class="intro-content">
+        <h1>Mametu Jessicão da Tabajira</h1>
+        <p>Quimbanda de Angola | Jogos de Búzios | Consultas e Trabalhos Espirituais</p>
+        <a href="https://wa.me/5583988887777?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn-agendar">Agende sua consulta</a>
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- ==========================
-     SEÇÃO SOBRE (PLACEHOLDER)
+     SEÇÃO SOBRE
   =========================== -->
   <section id="about" class="section-hidden">
     <div class="container">
       <div class="section-header">
-        <h3>[SOBRE]</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        <h3>Sobre</h3>
+        <p>Com anos de dedicação e estudo profundo da Quimbanda de Angola, Mametu Jessicão da Tabajira oferece orientação espiritual autêntica e trabalhos com seriedade e respeito às tradições.</p>
       </div>
-      <!-- Aqui você pode adicionar colunas, imagens, texto real etc. -->
       <div class="row">
         <div class="col-lg-4">
-          <h4>Missão</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <h4>Tradição e Respeito</h4>
+          <p>Seguimos os preceitos ancestrais da Quimbanda de Angola, honrando Exus e Pombagiras com fundamentos e conhecimento.</p>
         </div>
         <div class="col-lg-4">
-          <h4>Visão</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.</p>
+          <h4>Orientação Clara</h4>
+          <p>Através do Jogo de Búzios e da intuição guiada pelas entidades, buscamos clareza e direcionamento para seus caminhos.</p>
         </div>
         <div class="col-lg-4">
-          <h4>Valores</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae sapien ut libero venenatis faucibus.</p>
+          <h4>Sigilo e Confiança</h4>
+          <p>Todas as consultas e trabalhos são realizados com absoluto sigilo e discrição, construindo uma relação de confiança.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==========================
-     SEÇÃO SERVIÇOS (PLACEHOLDER)
+     SEÇÃO SERVIÇOS
   =========================== -->
   <section id="services" class="section-hidden">
     <div class="container">
       <div class="section-header">
-        <h3>[SERVIÇOS]</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <h3>Serviços</h3>
+        <p>Descubra como as forças da Quimbanda podem auxiliar em sua jornada, trazendo equilíbrio, proteção e abrindo caminhos.</p>
       </div>
 
       <div class="row">
         <div class="col-lg-4">
           <div class="box">
-            <i class="fa fa-gamepad fa-2x" style="color:#e94e1b;"></i>
+            <i class="fa fa-comments-o fa-2x"></i>
             <h4 class="title">Jogo de Búzios</h4>
-            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam libero tempore, cum soluta nobis est eligendi.</p>
+            <p class="description">Consulta oracular para desvendar questões, obter conselhos e entender as influências espirituais em sua vida.</p>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="box">
-            <i class="fa fa-handshake-o fa-2x" style="color:#e94e1b;"></i>
-            <h4 class="title">Consultas Espirituais</h4>
-            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+            <i class="fa fa-shield fa-2x"></i>
+            <h4 class="title">Trabalhos Espirituais</h4>
+            <p class="description">Realização de trabalhos para amor, prosperidade, abertura de caminhos, limpeza espiritual e proteção.</p>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="box">
-            <i class="fa fa-fire fa-2x" style="color:#e94e1b;"></i>
-            <h4 class="title">Trabalhos de Firmeza</h4>
-            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis autem vel eum iure reprehenderit qui in.</p>
+            <i class="fa fa-users fa-2x"></i>
+            <h4 class="title">Consultas Individuais</h4>
+            <p class="description">Atendimento personalizado para analisar sua situação específica e encontrar as melhores soluções espirituais.</p>
           </div>
         </div>
       </div>
@@ -123,38 +120,27 @@
   </section>
 
   <!-- ==========================
-     SEÇÃO CONTATO (PLACEHOLDER)
+     SEÇÃO CONTATO
   =========================== -->
   <section id="contact" class="section-hidden">
     <div class="container">
       <div class="section-header">
-        <h3>[CONTATO]</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.</p>
+        <h3>Contato</h3>
+        <p>Entre em contato para agendar sua consulta ou saber mais sobre os trabalhos. Laroyê!</p>
       </div>
-      <div class="row">
-        <div class="col-lg-6">
-          <p><strong>E-mail:</strong> exemplo@quimbanda.com</p>
-          <p><strong>WhatsApp:</strong> +55 (83) 9 8888-7777</p>
-          <p><strong>Instagram:</strong> @seu_perfil</p>
-        </div>
-        <div class="col-lg-6">
-          <!-- Formulário simples (você pode usar Formspree ou outro serviço) -->
-          <form action="https://formspree.io/seu-email" method="POST" class="contactForm">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" name="name" class="form-control" placeholder="Seu nome" />
-              </div>
-              <div class="form-group col-md-6">
-                <input type="email" name="email" class="form-control" placeholder="Seu e-mail" />
-              </div>
-            </div>
-            <div class="form-group">
-              <textarea name="message" rows="5" class="form-control" placeholder="Sua mensagem"></textarea>
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-agendar">Enviar Mensagem</button>
-            </div>
-          </form>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <p><strong>WhatsApp para Agendamentos:</strong></p>
+          <p><a href="https://wa.me/5583988887777?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-agendar" style="font-size: 1.2rem; padding: 15px 30px;">
+            <i class="fa fa-whatsapp"></i> (83) 98888-7777
+          </a></p>
+          <br>
+          <p><strong>Siga-nos nas Redes Sociais:</strong></p>
+          <p>
+            <a href="https://instagram.com/jessica_inacio_da_costa" target="_blank" style="font-size: 1.5rem; margin: 0 10px;"><i class="fa fa-instagram"></i></a>
+            <a href="https://facebook.com/jessica.inacio.da.costa" target="_blank" style="font-size: 1.5rem; margin: 0 10px;"><i class="fa fa-facebook-square"></i></a>
+            <!-- Adicione outros links de redes sociais se necessário -->
+          </p>
         </div>
       </div>
     </div>
@@ -165,28 +151,28 @@
   =========================== -->
   <footer id="footer" class="section-hidden">
     <div class="container">
-      <p>&copy; 2025 Mametu Jessicão da Tabajira – Todos os direitos reservados.</p>
-      <p>Site desenvolvido por você mesmo</p>
+      <p>© <span id="currentYear"></span> Mametu Jessicão da Tabajira – Todos os direitos reservados.</p>
+      <p>Desenvolvido com Axé</p>
     </div>
   </footer>
 
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- <div id="preloader"></div> --> <!-- Removido ou comentado se não estiver usando preloader -->
+
   <!-- ==========================
-     SCRIPTS (JS) – REMOVA CARROSSEL/OWL CAROUSEL
+     SCRIPTS (JS)
   =========================== -->
-  <!-- Apenas carregue o JS necessário do Bootstrap, sem plugins de carrossel antigos -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script> <!-- Opcional, dependendo da versão do jQuery e plugins -->
+  <script src="lib/easing/easing.min.js"></script> <!-- Para animações de scroll mais suaves -->
+  
+  <!-- Main Javascript File -->
+  <script src="js/main.js"></script>
 
-  <!-- Um script simples para adicionar classe no header quando rolar a página -->
   <script>
-    window.addEventListener('scroll', function() {
-      const header = document.getElementById('header');
-      if (window.scrollY > 50) {
-        header.classList.add('scroll-header');
-      } else {
-        header.classList.remove('scroll-header');
-      }
-    });
+    // Simples script para mostrar o ano atual no rodapé
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
   </script>
 
 </body>

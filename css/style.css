@@ -1,60 +1,59 @@
 /* ==========================================================================
    Reset básico e configurações gerais
    ========================================================================== */
-   *,
-   *::before,
-   *::after {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
-   }
-   
-   html {
-     scroll-behavior: smooth;
-   }
-   
-   body {
-     background-color: #111 !important;
-     color: #e0e0e0 !important;
-     font-family: 'Dosis', sans-serif;
-     line-height: 1.6;
-   }
-   
-   /* Links */
-   a {
-     color: #800020; /* bordô/vinho sofisticado */
-     text-decoration: none;
-     transition: color 0.2s ease;
-   }
-   
-   a:hover,
-   a:focus {
-     color: #600016; /* bordô mais escuro no hover */
-     text-decoration: underline;
-   }
-   
-   /* Headings */
-   h1, h2, h3, h4, h5, h6 {
-     color: #fff;
-     margin-bottom: 15px;
-     font-weight: 700;
-     line-height: 1.2;
-   }
-   
-   p {
-     margin-bottom: 20px;
-     color: #ccc;
-   }
-   
-   /* Lista básica */
-   ul {
-     list-style: none;
-   }
-   
-   /* ==========================================================================
-      HEADER / MENU FIXO
-      ========================================================================== */
-   #header {
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #111 !important;
+  color: #e0e0e0 !important;
+  font-family: 'Dosis', sans-serif;
+  line-height: 1.6;
+}
+
+/* Links */
+a {
+  color: #800020; /* bordô/vinho sofisticado */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus {
+  color: #600016; /* bordô mais escuro no hover */
+  text-decoration: none;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================================================
+   HEADER / MENU FIXO
+   ========================================================================== */
+#header {
   position: fixed;
   top: 0;
   left: 0;
@@ -62,39 +61,38 @@
   width: 100%;
   z-index: 1000;
   background: transparent;
-  backdrop-filter: blur(4px);
   padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  opacity: 0;
+  opacity: 0; /* Começa escondido */
   pointer-events: none;
-  transition: opacity 0.3s ease, background-color 0.3s ease;
+  transition: opacity 0.4s ease, background-color 0.4s ease, backdrop-filter 0.4s ease;
 }
 
 #header.scroll-header {
   background-color: rgba(17, 17, 17, 0.85);
-  opacity: 1;
+  backdrop-filter: blur(5px);
+  opacity: 1; /* Torna-se visível */
   pointer-events: all;
 }
 
-   
-   
-   #logo h1 {
-     margin: 0;
-     font-size: 1.6rem;
-     font-weight: 700;
-     color: #800020;
-   }
-   
-   #logo h1 a {
-     color: inherit;
-   }
-   
+#logo h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+#logo h1 a {
+  color: inherit;
+}
+#logo h1 a:hover {
+  color: #800020;
+}
+
 /* ============================================
    NAV MENU – Alinhamento e Fonte
    ============================================ */
-
 #nav-menu-container {
   display: flex;
   align-items: center;
@@ -103,7 +101,7 @@
 
 .nav-menu {
   display: flex;
-  gap: 20px;
+  gap: 20px; /* Espaçamento entre itens do menu */
   margin: 0;
   padding: 0;
   list-style: none;
@@ -121,7 +119,7 @@
   padding: 0 12px;
   font-size: 1rem;
   font-weight: 500;
-  color: #fff;
+  color: #e0e0e0;
   transition: color 0.3s ease;
 }
 
@@ -130,16 +128,12 @@
   color: #800020;
 }
 
+/* Ícone “hambúrguer” para mobile (Bootstrap) */
+/* .navbar-toggler-icon é estilizado pelo Bootstrap, mas pode ser sobrescrito se necessário */
 
-   
-   /* Ícone “hambúrguer” para mobile (Bootstrap) */
-   .navbar-toggler-icon {
-     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-   }
-   
-   /* ==========================================================================
-      INTRO – IMAGEM FIXA (HERO)
-      ========================================================================== */
+/* ==========================================================================
+   INTRO – IMAGEM FIXA (HERO)
+   ========================================================================== */
 #intro {
   position: relative;
   width: 100%;
@@ -153,108 +147,107 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  --overlay-opacity: 0; /* <- ESSENCIAL! define a variável inicial */
+  --overlay-opacity: 0; /* Variável CSS para opacidade do overlay, controlada pelo JS */
 }
 
-#intro::before {
+#intro::before { /* Pseudo-elemento para o overlay de escurecimento */
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0); /* começa transparente */
-  transition: background-color 0.4s ease;
+  background-color: rgba(0, 0, 0, var(--overlay-opacity));
   z-index: 1;
+  transition: background-color 0.4s ease-out;
 }
 
-#intro .intro-content {
+#intro .intro-container { /* Container para o conteúdo textual */
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Acima do overlay ::before */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 20px;
 }
 
-   
-   #intro .intro-container img {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     object-fit: cover;
-     z-index: 1;
-   }
-   
-   #intro .intro-content {
-     position: relative;
-     z-index: 2;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     height: 100%;
-     text-align: center;
-     padding: 0 20px;
-   }
-   
-   #intro .intro-content h1 {
-     font-size: 2.8rem;
-     margin-bottom: 15px;
-   }
-   
-   #intro .intro-content p {
-     font-size: 1.1rem;
-     margin-bottom: 25px;
-     max-width: 600px;
-   }
-   
-   #intro .intro-content .btn-agendar {
-     background-color: #800020;
-     color: #fff;
-     padding: 12px 28px;
-     border-radius: 4px;
-     text-transform: uppercase;
-     font-weight: 600;
-     transition: background-color 0.2s ease;
-   }
-   
-   #intro .intro-content .btn-agendar:hover {
-     background-color: #600016;
-     color: #fff !important; /* força o texto branco no hover */
-   }
-   
-   /* Espaço para não sobrepor conteúdo abaixo do header fixo */
-   .main-content {
-     padding-top: 80px;
-   }
-   
-   /* ==========================================================================
-      SEÇÕES INTERNAS – ESTILOS GERAIS
-      ========================================================================== */
-   section {
-     padding: 80px 0;
-   }
-   
-   .section-header {
-     text-align: center;
-     margin-bottom: 40px;
-   }
-   
-   .section-header h3 {
-     font-size: 2rem;
-     position: relative;
-     display: inline-block;
-     margin-bottom: 15px;
-   }
-   
-   .section-header p {
-     color: #ccc;
-     font-size: 1rem;
-     max-width: 600px;
-     margin: 0 auto;
-   }
+#intro .intro-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
 
-    .section-hidden {
+#intro .intro-content p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  max-width: 600px;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+#intro .intro-content .btn-agendar,
+#contact .btn-agendar /* Estilo compartilhado para o botão de agendar */
+{
+  background-color: #800020;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  border: 2px solid #800020;
+  display: inline-block;
+}
+
+#intro .intro-content .btn-agendar:hover,
+#contact .btn-agendar:hover {
+  background-color: #600016;
+  color: #fff !important; /* Garante que o texto permaneça branco */
+  border-color: #600016;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   SEÇÕES INTERNAS – ESTILOS GERAIS
+   ========================================================================== */
+section {
+  padding: 70px 0;
+  overflow-x: hidden; /* Previne barras de rolagem horizontais de animações */
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header h3 {
+  font-size: 2rem;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #e0e0e0;
+}
+.section-header h3::after { /* Linha decorativa abaixo do título da seção */
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #800020;
+    margin: 8px auto 0;
+}
+
+.section-header p {
+  color: #bbb;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-hidden {
   opacity: 0;
-  transform: translateY(30px);
-  pointer-events: none;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(40px);
+  pointer-events: none; /* Evita interação enquanto escondido */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .section-visible {
@@ -263,249 +256,268 @@
   pointer-events: all;
 }
 
-   
-   /* ==========================================================================
-      ABOUT (SEÇÃO SOBRE)
-      ========================================================================== */
-   #about {
-     background-color: #1a1a1a !important;
-     color: #ccc;
-   }
-   
-   #about .row > div {
-     margin-bottom: 30px;
-   }
-   
-   #about h4 {
-     font-size: 1.4rem;
-     margin-bottom: 15px;
-     color: #fff;
-   }
-   
-   #about p {
-     color: #bbb;
-   }
-   
-   /* ==========================================================================
-      SERVICES (SEÇÃO SERVIÇOS)
-      ========================================================================== */
-   #services {
-     background-color: #111 !important;
-     color: #ccc;
-   }
-   
-   #services .box {
-     background-color: transparent;
-     border: 1px solid rgba(255, 255, 255, 0.15);
-     padding: 30px;
-     text-align: center;
-     transition: background-color 0.2s, border-color 0.2s;
-     height: 100%;
-   }
-   
-   #services .box:hover {
-     background-color: rgba(128, 0, 32, 0.1);
-     border-color: #800020;
-   }
-   
-   #services .box i {
-     margin-bottom: 15px;
-     color: #800020;
-   }
-   
-   #services .box .title {
-     font-size: 1.2rem;
-     color: #fff;
-     margin-bottom: 10px;
-   }
-   
-   #services .box .description {
-     color: #ddd;
-     font-size: 0.95rem;
-     line-height: 1.4;
-   }
-   
-   /* ==========================================================================
-      CONTACT (SEÇÃO CONTATO)
-      ========================================================================== */
-   #contact {
-     background-color: #1a1a1a !important;
-     color: #ccc;
-   }
-   
-   #contact .form-control {
-     background-color: #222;
-     border: 1px solid #333;
-     color: #e0e0e0;
-   }
-   
-   #contact .form-control::placeholder {
-     color: #777;
-   }
-   
-   #contact .form-control:focus {
-     background-color: #222;
-     border-color: #800020;
-     outline: none;
-     color: #fff;
-   }
-   
-   #contact .contactForm button {
-     background-color: #800020;
-     color: #fff;
-     border: none;
-     padding: 10px 25px;
-     border-radius: 4px;
-     text-transform: uppercase;
-     font-weight: 600;
-     transition: background-color 0.2s;
-   }
-   
-   #contact .contactForm button:hover {
-     background-color: #600016;
-     color: #fff;
-   }
-   
-   #contact p strong {
-     color: #fff;
-   }
-   
-   /* ==========================================================================
-      FOOTER
-      ========================================================================== */
-   #footer {
-     background-color: #111;
-     padding: 25px 0;
-     color: #777;
-     text-align: center;
-     font-size: 0.9rem;
-   }
-   
-   #footer p {
-     margin-bottom: 10px;
-     color: #777;
-   }
-   
-   #footer a {
-     color: #800020;
-   }
-   
-   #footer a:hover {
-     color: #600016;
-   }
-   
-   /* ==========================================================================
-      OVERRIDES – FORÇANDO CORES BORDE E HOVER
-      ========================================================================== */
-   /* Qualquer estilo inline ou plugin que ainda possua laranja será sobrescrito */
-   *[style*="#e94e1b"] {
-     background-color: #800020 !important;
-     border-color: #800020 !important;
-     color: #800020 !important;
-   }
-   
-   /* Forçar hover geral */
-   a:hover,
-   a:focus {
-     color: #600016 !important;
-   }
-   
-   /* Botões primários (caso algum plugin use .btn-primary em laranja) */
-   .btn-primary,
-   .btn-primary:hover,
-   .btn-primary:focus,
-   .btn-primary:active,
-   .btn-primary:visited {
-     background-color: #800020 !important;
-     border-color: #600016 !important;
-     color: #fff !important;
-   }
-   
-   /* Carousel Controls (caso existam ainda) */
-   .carousel-control-next-icon,
-   .carousel-control-prev-icon {
-     background-color: #800020 !important;
-   }
-   
-   /* Forçar botão de contato */
-   #contact .contactForm button {
-     background-color: #800020 !important;
-   }
-   
-   #contact .contactForm button:hover {
-     background-color: #600016 !important;
-   }
-   
-   /* Forçar borda bordô em serviços fora do hover */
-   #services .box {
-     border-color: #800020 !important;
-   }
-   
-   /* ==========================================================================
-      BACK-TO-TOP BUTTON (opcional)
-      ========================================================================== */
-   .back-to-top {
-     position: fixed;
-     bottom: 30px;
-     right: 30px;
-     background-color: #800020;
-     color: #fff;
-     width: 40px;
-     height: 40px;
-     border-radius: 50%;
-     text-align: center;
-     line-height: 40px;
-     cursor: pointer;
-     transition: background-color 0.2s;
-     z-index: 1000;
-     display: none;
-   }
-   
-   .back-to-top:hover {
-     background-color: #600016;
-   }
-   
-   /* ==========================================================================
-      ANIMAÇÕES SIMPLES (opcional)
-      ========================================================================== */
-   .fade-in {
-     opacity: 0;
-     transform: translateY(20px);
-     transition: opacity 0.6s ease, transform 0.6s ease;
-   }
-   
-   .fade-in.visible {
-     opacity: 1;
-     transform: translateY(0);
-   }
-   
-   /* ==========================================================================
-      MEDIA QUERIES – RESPONSIVIDADE
-      ========================================================================== */
-   @media (max-width: 991px) {
-     #nav-menu-container {
-       display: none;
-     }
-     .navbar-toggler {
-       display: block;
-     }
-   }
-   
-   @media (max-width: 767px) {
-     #intro .intro-content h1 {
-       font-size: 2rem;
-     }
-     #intro .intro-content p {
-       font-size: 1rem;
-     }
-     #services .box {
-       margin-bottom: 30px;
-     }
-   }
-   
-   @media (min-width: 992px) {
-     .navbar-toggler {
-       display: none;
-     }
-   }
-   
+/* ==========================================================================
+   ABOUT (SEÇÃO SOBRE)
+   ========================================================================== */
+#about {
+  background-color: #181818 !important;
+}
+
+#about .row > div { /* Espaçamento para colunas na seção Sobre */
+  margin-bottom: 30px;
+}
+
+#about h4 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #800020;
+}
+
+#about p {
+  color: #bbb;
+}
+
+/* ==========================================================================
+   SERVICES (SEÇÃO SERVIÇOS)
+   ========================================================================== */
+#services {
+  background-color: #111 !important;
+}
+
+#services .box {
+  background-color: #1c1c1c;
+  border: 1px solid #2f2f2f;
+  padding: 30px;
+  text-align: center;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+  height: 100%; /* Garante que caixas na mesma linha tenham mesma altura */
+  border-radius: 5px;
+  display: flex; /* Para alinhar conteúdo verticalmente se necessário */
+  flex-direction: column;
+  justify-content: center;
+}
+
+#services .box:hover {
+  background-color: #222;
+  border-color: #800020;
+  transform: translateY(-5px);
+}
+
+#services .box i {
+  margin-bottom: 20px;
+  color: #800020;
+  font-size: 2.5rem;
+}
+
+#services .box .title {
+  font-size: 1.3rem;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+}
+
+#services .box .description {
+  color: #aaa;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   CONTACT (SEÇÃO CONTATO)
+   ========================================================================== */
+#contact {
+  background-color: #181818 !important;
+}
+
+#contact p strong {
+  color: #fff;
+}
+#contact .fa-whatsapp {
+    margin-right: 8px; /* Espaço antes do número do WhatsApp */
+}
+#contact a[href^="https://instagram"], 
+#contact a[href^="https://facebook"] { /* Estilo para ícones de redes sociais */
+    color: #ccc;
+    transition: color 0.3s;
+}
+#contact a[href^="https://instagram"]:hover, 
+#contact a[href^="https://facebook"]:hover {
+    color: #800020;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+#footer {
+  background-color: #0a0a0a;
+  padding: 30px 0;
+  color: #666;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+#footer p {
+  margin-bottom: 8px;
+  color: #777;
+}
+
+#footer a {
+  color: #800020;
+}
+
+#footer a:hover {
+  color: #600016;
+}
+
+/* ==========================================================================
+   BACK-TO-TOP BUTTON
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  display: none; /* JS controla visibilidade */
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+  background: #800020;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 1;
+  font-size: 18px;
+  border-radius: 50%;
+  transition: background 0.3s, opacity 0.3s;
+}
+.back-to-top i {
+    padding-top: 10px; /* Ajuste vertical do ícone */
+}
+
+.back-to-top:hover {
+  background: #600016;
+  color: #fff;
+}
+
+/* ==========================================================================
+   MOBILE NAV specific styles
+   ========================================================================== */
+#mobile-nav-toggle {
+  position: fixed;
+  right: 15px;
+  top: 19px;
+  z-index: 1001;
+  border: 0;
+  background: none;
+  font-size: 24px;
+  transition: all 0.4s;
+  outline: none !important;
+  cursor: pointer;
+  width: 40px; /* Adicionado para melhor área de clique */
+  height: 40px; /* Adicionado para melhor área de clique */
+  color: #fff; /* Cor do ícone do menu mobile */
+  display: none; /* Escondido por padrão, JS ou media query mostra */
+}
+
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  padding-top: 18px;
+  bottom: 0;
+  z-index: 1000;
+  left: -260px; /* Fora da tela */
+  background: rgba(10, 10, 10, 0.95);
+  width: 260px;
+  overflow-y: auto;
+  transition: left 0.4s; /* Transição para 'left' */
+}
+
+#mobile-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#mobile-nav ul li a {
+  color: #ddd;
+  font-size: 16px;
+  padding: 10px 22px 10px 15px;
+  display: block;
+  font-weight: 500;
+}
+
+#mobile-nav ul li a:hover,
+#mobile-nav ul li.menu-active a {
+  color: #800020;
+}
+
+#mobile-nav ul .menu-has-children i {
+  position: absolute;
+  right: 0;
+  padding: 15px;
+  cursor: pointer;
+  color: #fff;
+}
+#mobile-nav ul .menu-has-children i.fa-chevron-up {
+  color: #800020; /* Cor do ícone quando o submenu está aberto */
+}
+
+#mobile-body-overly { /* Overlay para o corpo quando o menu mobile está aberto */
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(17, 17, 17, 0.8);
+  display: none;
+}
+
+/* Mobile Nav Active State */
+body.mobile-nav-active {
+  overflow: hidden; /* Evita scroll do corpo */
+}
+body.mobile-nav-active #mobile-nav {
+  left: 0; /* Menu mobile visível */
+}
+body.mobile-nav-active #mobile-nav-toggle {
+  /* Estilos para o botão quando o menu está ativo, ex: ícone 'X' */
+  /* color: #800020; */ 
+}
+body.mobile-nav-active #mobile-body-overly {
+  display: block; /* Overlay visível */
+}
+
+/* ==========================================================================
+   MEDIA QUERIES – RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 991px) { /* Tablets e abaixo */
+  #header {
+    height: 60px;
+    padding: 10px 15px;
+  }
+  #logo h1 {
+    font-size: 1.4rem;
+  }
+  #nav-menu-container {
+    display: none; /* Esconde menu desktop */
+  }
+  #mobile-nav-toggle {
+    display: block; /* Mostra botão do menu mobile */
+  }
+  section {
+    padding: 50px 0;
+  }
+}
+
+@media (max-width: 767px) { /* Celulares */
+  #intro .intro-content h1 {
+    font-size: 2.2rem;
+  }
+  #intro .intro-content p {
+    font-size: 1rem;
+  }
+  #services .box {
+    margin-bottom: 30px; /* Garante espaçamento entre caixas de serviço empilhadas */
+  }
+  .section-header h3 {
+    font-size: 1.8rem;
+  }
+}
