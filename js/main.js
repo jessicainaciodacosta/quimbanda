@@ -213,5 +213,19 @@ if ($(window).scrollTop() > 50) {
     items: 1
   });
 
+  // Escurece a imagem da onça conforme o scroll
+window.addEventListener("scroll", function () {
+  const scrollY = window.scrollY || document.documentElement.scrollTop;
+  const maxOpacity = 0.4;
+  const opacity = Math.min(scrollY / 400, maxOpacity);
+
+  // Aplica a variável CSS dinamicamente
+  const introSection = document.querySelector("#intro");
+  if (introSection) {
+    introSection.style.setProperty("--overlay-opacity", opacity);
+  }
+});
+
+
 })(jQuery);
 
