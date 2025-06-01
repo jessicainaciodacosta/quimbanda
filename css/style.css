@@ -153,6 +153,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  --overlay-opacity: 0;
 }
 
 #intro::before {
@@ -218,6 +219,7 @@
    
    #intro .intro-content .btn-agendar:hover {
      background-color: #600016;
+     color: #fff !important; /* força o texto branco no hover */
    }
    
    /* Espaço para não sobrepor conteúdo abaixo do header fixo */
