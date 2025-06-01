@@ -74,14 +74,21 @@
     $("#mobile-nav, #mobile-nav-toggle").hide();
   }
 
-  // Header scroll class
-  $(window).scroll(function() {
-    if ($(this).scrollTop() > 100) {
-      $('#header').addClass('header-scrolled');
-    } else {
-      $('#header').removeClass('header-scrolled');
-    }
-  });
+// Header scroll class com transparência visível somente ao rolar
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 50) {
+    $('#header').addClass('scroll-header');
+  } else {
+    $('#header').removeClass('scroll-header');
+  }
+});
+
+if ($(window).scrollTop() > 50) {
+  $('#header').addClass('scroll-header');
+} else {
+  $('#header').removeClass('scroll-header');
+}
+
 
   if ($(window).scrollTop() > 100) {
     $('#header').addClass('header-scrolled');
