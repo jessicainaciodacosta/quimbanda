@@ -213,19 +213,19 @@ if ($(window).scrollTop() > 50) {
     items: 1
   });
 
-  // Escurece a imagem da onça conforme o scroll
+// Revela as seções conforme rola
 window.addEventListener("scroll", function () {
   const scrollY = window.scrollY || document.documentElement.scrollTop;
-  const maxOpacity = 0.4;
-  const opacity = Math.min(scrollY / 400, maxOpacity);
+  const threshold = 50;
 
-  // Aplica a variável CSS dinamicamente
-  const introSection = document.querySelector("#intro");
-  if (introSection) {
-    introSection.style.setProperty("--overlay-opacity", opacity);
-  }
+  document.querySelectorAll(".section-hidden").forEach(section => {
+    if (scrollY > threshold) {
+      section.classList.add("section-visible");
+      section.classList.remove("section-hidden");
+    }
+  });
 });
 
 
-})(jQuery);
-
+(jQuery);
+})

@@ -160,7 +160,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, var(--overlay-opacity));
+  background-color: rgba(0, 0, 0, 0); /* começa transparente */
   transition: background-color 0.4s ease;
   z-index: 1;
 }
@@ -249,6 +249,20 @@
      max-width: 600px;
      margin: 0 auto;
    }
+
+    .section-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
    
    /* ==========================================================================
       ABOUT (SEÇÃO SOBRE)
