@@ -74,14 +74,14 @@
     $("#mobile-nav, #mobile-nav-toggle").hide();
   }
 
-// Header scroll class com transparência visível somente ao rolar
+// Escurece a imagem da onça conforme o usuário rola
 $(window).scroll(function () {
-  if ($(this).scrollTop() > 50) {
-    $('#header').addClass('scroll-header');
-  } else {
-    $('#header').removeClass('scroll-header');
-  }
+  const scrollY = $(window).scrollTop();
+  const maxOpacity = 0.4;
+  const newOpacity = Math.min(scrollY / 400, maxOpacity);
+  $('#intro').get(0).style.setProperty('--overlay-opacity', newOpacity);
 });
+
 
 if ($(window).scrollTop() > 50) {
   $('#header').addClass('scroll-header');
