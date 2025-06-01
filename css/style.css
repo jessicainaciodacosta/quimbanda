@@ -318,6 +318,7 @@
    
    #contact .contactForm button:hover {
      background-color: #600016;
+     color: #fff;
    }
    
    #contact p strong {
