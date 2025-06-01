@@ -60,7 +60,7 @@
      left: 0;
      width: 100%;
      z-index: 1000;
-       background-color: rgba(0, 0, 0, 0.5);
+       background: transparent;
        backdrop-filter: blur(4px);
        transition: background 0.3s ease;
        padding: 15px 20px;
