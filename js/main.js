@@ -74,13 +74,16 @@
     $("#mobile-nav, #mobile-nav-toggle").hide();
   }
 
-// Escurece a imagem da onça conforme o usuário rola
-$(window).scroll(function () {
+// Escurece a imagem da onça conforme o scroll
+$(window).on("scroll", function () {
   const scrollY = $(window).scrollTop();
   const maxOpacity = 0.4;
   const newOpacity = Math.min(scrollY / 400, maxOpacity);
-  $('#intro').get(0).style.setProperty('--overlay-opacity', newOpacity);
+
+  // Aplica a variável CSS --overlay-opacity dinamicamente
+  document.querySelector('#intro').style.setProperty('--overlay-opacity', newOpacity);
 });
+
 
 
 if ($(window).scrollTop() > 50) {
