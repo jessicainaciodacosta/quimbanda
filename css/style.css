@@ -58,6 +58,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  height: 70px;
   width: 100%;
   z-index: 1000;
   background: transparent;
@@ -104,17 +105,26 @@
      margin-left: 30px;
    }
    
-   .nav-menu li a {
-     color: #fff;
-     font-size: 0.9rem;
-     font-weight: 500;
-     transition: color 0.2s;
-   }
-   
-   .nav-menu li a:hover,
-   .nav-menu li.menu-active a {
-     color: #800020;
-   }
+/* ============================================
+   AJUSTES DE MENU SUPERIOR (NAV MENU)
+   ============================================ */
+
+.nav-menu li a {
+  font-size: 1rem;              /* tamanho uniforme para todos */
+  font-weight: 500;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;          /* centraliza verticalmente */
+  height: 100%;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover,
+.nav-menu li.menu-active a {
+  color: #800020;
+}
+
    
    /* Ícone “hambúrguer” para mobile (Bootstrap) */
    .navbar-toggler-icon {
