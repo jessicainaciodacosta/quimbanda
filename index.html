@@ -5,35 +5,26 @@
   <title>Quimbanda de Angola – Mametu Jessicão da Tabajira</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- === Google Fonts === -->
   <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,400i,600,700" rel="stylesheet">
 
-  <!-- === Bootstrap CSS === -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- === Font Awesome (para ícones) === -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
-  <!-- === CSS principal (style.css) === -->
   <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 
-  <!-- ==========================
-     HEADER / MENU FIXO
-  =========================== -->
   <header id="header">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-      <!-- LOGO | NOME -->
       <div id="logo">
         <h1><a href="#intro">Mametu Jessicão da Tabajira</a></h1>
       </div>
 
-      <!-- MENU DE NAVEGAÇÃO -->
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
+          <li class="menu-active"><a href="#intro">Início</a></li>
           <li><a href="#about">Sobre</a></li>
           <li><a href="#services">Serviços</a></li>
           <li><a href="#contact">Contato</a></li>
@@ -42,113 +33,138 @@
     </div>
   </header>
 
-  <!-- ==========================
-     INTRO – IMAGEM FIXA (HERO)
-  =========================== -->
   <section id="intro">
-    <!-- O div #intro-overlay não é estritamente necessário aqui se o ::before faz o trabalho, mas não prejudica -->
-    <!-- <div id="intro-overlay" style="position: absolute; inset: 0; z-index: 1;"></div> -->
     <div class="intro-container">
       <div class="intro-content">
-        <h1>Mametu Jessicão da Tabajira</h1>
-        <p>Quimbanda de Angola | Jogos de Búzios | Consultas e Trabalhos Espirituais</p>
-        <a href="https://wa.me/5583988887777?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn-agendar">Agende sua consulta</a>
+        <h1 class="intro-element intro-element-hidden">Mametu Jessicão da Tabajira</h1>
+        <p class="intro-element intro-element-hidden delay-1">Quimbanda de Angola | Jogos de Búzios | Consultas e Trabalhos Espirituais</p>
+        <a href="https://wa.me/5583988887777?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn-agendar intro-element intro-element-hidden delay-2">Agende sua consulta</a>
       </div>
     </div>
   </section>
 
-  <!-- ==========================
-     SEÇÃO SOBRE
-  =========================== -->
   <section id="about" class="section-hidden">
     <div class="container">
-      <div class="section-header">
-        <h3>Sobre</h3>
-        <p>Com anos de dedicação e estudo profundo da Quimbanda de Angola, Mametu Jessicão da Tabajira oferece orientação espiritual autêntica e trabalhos com seriedade e respeito às tradições.</p>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <h4>Tradição e Respeito</h4>
-          <p>Seguimos os preceitos ancestrais da Quimbanda de Angola, honrando Exus e Pombagiras com fundamentos e conhecimento.</p>
+      <header class="section-header">
+        <h2 class="section-title">Sobre Nós</h2>
+        <p class="section-description">Conheça um pouco da nossa história e missão.</p>
+      </header>
+
+      <div class="row about-container">
+        <div class="col-lg-6 content order-lg-1 order-2">
+          <p>Seja bem-vindo(a)! Meu nome é Mametu Jessicão da Tabajira e sou sacerdotisa de Quimbanda de Angola, dedicada a guiar e auxiliar aqueles que buscam caminhos, soluções e crescimento espiritual através da sabedoria ancestral dos Exus e Pombagiras.</p>
+          <p>Com anos de experiência e estudo aprofundado nas tradições da Quimbanda de Angola, ofereço um trabalho sério, ético e comprometido com o bem-estar e a evolução de cada indivíduo. Minha missão é ser um elo entre o mundo material e o espiritual, utilizando as forças da Quimbanda para desatar nós, abrir portas e promover o equilíbrio em diversas áreas da vida.</p>
+          <p>A Quimbanda de Angola é uma religião rica em sabedoria, que trabalha com a energia dos Exus e Pombagiras, entidades que atuam na resolução de problemas terrenos, na proteção e na quebra de demandas. Cada consulta e cada trabalho são realizados com respeito, seriedade e foco nas suas necessidades específicas, buscando sempre a melhor solução para o seu caso.</p>
+          <p>Acredito que todos merecem uma vida plena e feliz. Se você se sente perdido(a), enfrenta desafios em relacionamentos, carreira, finanças ou saúde, ou simplesmente busca autoconhecimento e proteção espiritual, estou aqui para te ajudar. Minha prioridade é oferecer um acolhimento genuíno e um direcionamento claro, com base na fé e na tradição.</p>
+          <p>Convido você a conhecer nossos serviços e agendar sua consulta. Permita que a força da Quimbanda de Angola ilumine seu caminho e transforme sua vida!</p>
         </div>
-        <div class="col-lg-4">
-          <h4>Orientação Clara</h4>
-          <p>Através do Jogo de Búzios e da intuição guiada pelas entidades, buscamos clareza e direcionamento para seus caminhos.</p>
-        </div>
-        <div class="col-lg-4">
-          <h4>Sigilo e Confiança</h4>
-          <p>Todas as consultas e trabalhos são realizados com absoluto sigilo e discrição, construindo uma relação de confiança.</p>
+        <div class="col-lg-6 background order-lg-2 order-1">
+          <img src="img/about-img.jpg" alt="Mametu Jessicão da Tabajira em ritual" class="img-fluid">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==========================
-     SEÇÃO SERVIÇOS
-  =========================== -->
   <section id="services" class="section-hidden">
     <div class="container">
-      <div class="section-header">
-        <h3>Serviços</h3>
-        <p>Descubra como as forças da Quimbanda podem auxiliar em sua jornada, trazendo equilíbrio, proteção e abrindo caminhos.</p>
-      </div>
+      <header class="section-header">
+        <h2 class="section-title">Serviços</h2>
+        <p class="section-description">Descubra como podemos te ajudar a encontrar seu caminho.</p>
+      </header>
 
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
           <div class="box">
-            <i class="fa fa-comments-o fa-2x"></i>
-            <h4 class="title">Jogo de Búzios</h4>
-            <p class="description">Consulta oracular para desvendar questões, obter conselhos e entender as influências espirituais em sua vida.</p>
+            <div class="icon" style="background: #fff0f5;"><i class="fa fa-book" style="color: #da366c;"></i></div>
+            <h4 class="title"><a href="">Jogos de Búzios</a></h4>
+            <p class="description">Através dos búzios, desvendamos seu passado, compreendemos seu presente e traçamos caminhos para o futuro. Uma ferramenta poderosa de autoconhecimento e direcionamento.</p>
           </div>
         </div>
-        <div class="col-lg-4">
+
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
           <div class="box">
-            <i class="fa fa-shield fa-2x"></i>
-            <h4 class="title">Trabalhos Espirituais</h4>
-            <p class="description">Realização de trabalhos para amor, prosperidade, abertura de caminhos, limpeza espiritual e proteção.</p>
+            <div class="icon" style="background: #e6fdfb;"><i class="fa fa-hand-o-right" style="color: #16bbff;"></i></div>
+            <h4 class="title"><a href="">Consultas Espirituais</a></h4>
+            <p class="description">Ofereço consultas individuais para analisar suas questões e guiar você em busca de equilíbrio e soluções para diversos desafios.</p>
           </div>
         </div>
-        <div class="col-lg-4">
+
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
           <div class="box">
-            <i class="fa fa-users fa-2x"></i>
-            <h4 class="title">Consultas Individuais</h4>
-            <p class="description">Atendimento personalizado para analisar sua situação específica e encontrar as melhores soluções espirituais.</p>
+            <div class="icon" style="background: #eafde7;"><i class="fa fa-magic" style="color: #41cf2e;"></i></div>
+            <h4 class="title"><a href="">Trabalhos Espirituais</a></h4>
+            <p class="description">Realizo trabalhos espirituais específicos para abertura de caminhos, prosperidade, saúde, amor, proteção e limpeza espiritual, sempre com a força da Quimbanda de Angola.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+          <div class="box">
+            <div class="icon" style="background: #fff0f5;"><i class="fa fa-shield" style="color: #d6b334;"></i></div>
+            <h4 class="title"><a href="">Proteção Espiritual</a></h4>
+            <p class="description">Trabalhos de proteção para afastar energias negativas, inveja e olho gordo, criando um escudo energético ao seu redor.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+          <div class="box">
+            <div class="icon" style="background: #e6fdfb;"><i class="fa fa-heart" style="color: #4680ff;"></i></div>
+            <h4 class="title"><a href="">União e Equilíbrio Amoroso</a></h4>
+            <p class="description">Auxílio em questões amorosas, buscando harmonizar relacionamentos, fortalecer laços e atrair a pessoa amada.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+          <div class="box">
+            <div class="icon" style="background: #eafde7;"><i class="fa fa-line-chart" style="color: #ee5026;"></i></div>
+            <h4 class="title"><a href="">Prosperidade e Abertura de Caminhos</a></h4>
+            <p class="description">Trabalhos para destravar sua vida financeira e profissional, atraindo novas oportunidades e prosperidade.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==========================
-     SEÇÃO CONTATO
-  =========================== -->
   <section id="contact" class="section-hidden">
-    <div class="container">
-      <div class="section-header">
-        <h3>Contato</h3>
-        <p>Entre em contato para agendar sua consulta ou saber mais sobre os trabalhos. Laroyê!</p>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <p><strong>WhatsApp para Agendamentos:</strong></p>
-          <p><a href="https://wa.me/5583988887777?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn btn-agendar" style="font-size: 1.2rem; padding: 15px 30px;">
-            <i class="fa fa-whatsapp"></i> (83) 98888-7777
-          </a></p>
-          <br>
-          <p><strong>Siga-nos nas Redes Sociais:</strong></p>
-          <p>
-            <a href="https://instagram.com/jessica_inacio_da_costa" target="_blank" style="font-size: 1.5rem; margin: 0 10px;"><i class="fa fa-instagram"></i></a>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 map-box">
+          <img src="img/contact-img.jpg" alt="Imagem de Contato" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div class="col-lg-6 contact-details d-flex flex-column justify-content-center">
+          <header class="section-header">
+            <h2 class="section-title">Entre em Contato</h2>
+            <p class="section-description">Envie uma mensagem ou entre em contato pelos meios abaixo.</p>
+          </header>
+
+          <div class="row">
+            <div class="col-md-6 info">
+              <i class="fa fa-map-marker"></i>
+              <p>João Pessoa - PB</p>
+            </div>
+            <div class="col-md-6 info">
+              <i class="fa fa-phone"></i>
+              <p>+55 83 9.8888-7777</p>
+            </div>
+            <div class="col-md-6 info">
+              <i class="fa fa-envelope"></i>
+              <p>contato@jessicao.com</p>
+            </div>
+            <div class="col-md-6 info">
+              <i class="fa fa-whatsapp"></i>
+              <p><a href="https://wa.me/5583988887777?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta." target="_blank">+55 83 9.8888-7777</a></p>
+            </div>
+          </div>
+
+          <p class="social-links">
+            <a href="https://instagram.com/mametujessicao" target="_blank" style="font-size: 1.5rem; margin: 0 10px;"><i class="fa fa-instagram"></i></a>
             <a href="https://facebook.com/jessica.inacio.da.costa" target="_blank" style="font-size: 1.5rem; margin: 0 10px;"><i class="fa fa-facebook-square"></i></a>
-            <!-- Adicione outros links de redes sociais se necessário -->
-          </p>
+            </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==========================
-     RODAPÉ
-  =========================== -->
   <footer id="footer" class="section-hidden">
     <div class="container">
       <p>© <span id="currentYear"></span> Mametu Jessicão da Tabajira – Todos os direitos reservados.</p>
@@ -157,23 +173,9 @@
   </footer>
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <!-- <div id="preloader"></div> --> <!-- Removido ou comentado se não estiver usando preloader -->
-
-  <!-- ==========================
-     SCRIPTS (JS)
-  =========================== -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script> <!-- Opcional, dependendo da versão do jQuery e plugins -->
-  <script src="lib/easing/easing.min.js"></script> <!-- Para animações de scroll mais suaves -->
-  
-  <!-- Main Javascript File -->
-  <script src="js/main.js"></script>
-
-  <script>
-    // Simples script para mostrar o ano atual no rodapé
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script> <script src="lib/easing/easing.min.js"></script> <script src="js/main.js"></script>
 
 </body>
 </html>

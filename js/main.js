@@ -27,39 +27,56 @@
     };
   }
 
+  // --- Funções de Animação de Entrada ao Carregar a Página ---
+  function animateIntroElements() {
+    // Adiciona a classe que revela os elementos da intro após um pequeno atraso
+    // Isso garante que eles comecem escondidos e só apareçam com uma transição suave
+    setTimeout(function() {
+      $('#intro .intro-element').removeClass('intro-element-hidden');
+    }, 500); // Começa a revelar os elementos da intro 500ms após o carregamento da página
+  }
+
   // --- Efeitos de Scroll ---
   function handleScrollEffects() {
     const scrollY = $window.scrollTop();
-    const scrollThreshold = 50;
+    const headerRevealThreshold = 50; // Quantos pixels de scroll para o header aparecer
+    const introContentRevealThreshold = 100; // Quantos pixels de scroll para o conteúdo da intro começar a ser revelado
 
     // 1. Visibilidade e estilo do Header
     if ($header.length) {
-      if (scrollY > scrollThreshold) {
-        $header.addClass('scroll-header');
+      if (scrollY > headerRevealThreshold) {
+        $header.removeClass('header-hidden').addClass('scroll-header');
       } else {
-        $header.removeClass('scroll-header');
+        $header.addClass('header-hidden').removeClass('scroll-header');
       }
     }
 
     // 2. Escurecimento do overlay da Intro
     const introElement = document.getElementById('intro'); // Vanilla JS para setProperty
     if (introElement) {
-      const maxOpacity = 0.6; // Ajuste conforme preferência (0.0 a 1.0)
-      const newOpacity = Math.min(scrollY / (window.innerHeight * 0.6), maxOpacity); // Ajuste o divisor para a "velocidade" do escurecimento
-      introElement.style.setProperty('--overlay-opacity', newOpacity);
+      const maxOverlayOpacity = 0.6; // Opacidade máxima do overlay (0.0 a 1.0)
+      const maxScrollForOverlay = window.innerHeight * 0.8; // Altura do scroll para atingir opacidade máxima
+      
+      let newOverlayOpacity = 0;
+      if (scrollY > 0) {
+          newOverlayOpacity = Math.min(scrollY / maxScrollForOverlay, maxOverlayOpacity);
+      }
+      introElement.style.setProperty('--overlay-opacity', newOverlayOpacity);
     }
 
     // 3. Revelar Seções (otimizado)
+    // As seções 'section-hidden' só são reveladas quando o scroll passa delas
+    // O conteúdo da intro é revelado com `animateIntroElements`
     if ($sectionsToReveal.length) {
       const windowHeight = $window.height();
-      $sectionsToReveal = $sectionsToReveal.filter(function() { // Usar .filter() para remover da coleção jQuery
+      $sectionsToReveal = $sectionsToReveal.filter(function() {
         const $section = $(this);
-        // Revelar se a seção está parcialmente visível ou se o scroll passou de um threshold básico
-        if ($section.offset().top < scrollY + windowHeight - 100 || scrollY > scrollThreshold + 50) { // -100 para revelar um pouco antes de estar totalmente na tela
+        // Revela a seção se ela está a 100px acima da parte inferior da viewport
+        if ($section.offset().top < scrollY + windowHeight - 100) {
           $section.addClass('section-visible').removeClass('section-hidden');
-          return false; // Remove da coleção $sectionsToReveal para não processar novamente
+          return false; // Remove da coleção $sectionsToReveal
         }
-        return true; // Mantém na coleção para verificação futura
+        return true; // Mantém na coleção
       });
     }
   }
@@ -76,7 +93,9 @@
       if (sectionId) { // Garante que a seção tem um ID
         sectionData.push({
           id: sectionId,
-          top: $section.offset().top - headerHeight - 20, // Ajuste de -20px para ativar um pouco antes
+          // Ajuste de -20px para ativar um pouco antes de estar totalmente na tela,
+          // compensando a altura do header fixo.
+          top: $section.offset().top - headerHeight - 20,
           bottom: $section.offset().top + $section.outerHeight() - headerHeight - 20,
         });
       }
@@ -88,16 +107,11 @@
     let currentSectionId = null;
 
     // Lógica para o link "Home" (#intro)
-    // Se o scroll está acima do ponto de ativação da primeira seção real (ex: #about)
-    const firstRealSectionActivationPoint = sectionData.length > 0 ? sectionData[0].top : ($window.height() * 0.5);
-     if (sectionData.length > 0 && $navSections.first().attr('id') !== 'intro' && $window.scrollTop() < ($navSections.first().offset().top - ($header.outerHeight() || 0) - 20)) {
+    // Considera a seção 'intro' ativa se o scroll estiver próximo do topo
+    // e nenhuma outra seção foi rolada para dentro da área de visibilidade
+    if (scrollY < sectionData[0].top + 50) { // Se o scroll está no topo ou logo após a intro
         currentSectionId = 'intro';
-    } else if (sectionData.length === 0 && scrollY < ($window.height() * 0.5) ) { // Caso não haja seções além da intro
-        currentSectionId = 'intro';
-    }
-
-
-    if (!currentSectionId) { // Se não for 'intro', verifica outras seções
+    } else {
         for (let i = 0; i < sectionData.length; i++) {
           if (scrollY >= sectionData[i].top && scrollY < sectionData[i].bottom) {
             currentSectionId = sectionData[i].id;
@@ -113,9 +127,8 @@
     $mainNav.find('li').removeClass('menu-active');
     if (currentSectionId) {
       $mainNav.find('a[href="#' + currentSectionId + '"]').parent('li').addClass('menu-active');
-    } else if (scrollY < ($window.height() * 0.3)) { // Fallback para 'intro' se muito no topo e nada mais ativo
-        $mainNav.find('a[href="#intro"]').parent('li').addClass('menu-active');
     }
+    // Não precisa de fallback adicional aqui, a lógica acima já cobre.
   }
 
   // --- Inicialização das Funcionalidades ---
@@ -204,9 +217,15 @@
 
   // --- Execução e Event Listeners ---
   $window.on('load', function() {
+    // 1. Inicializa o header como oculto
+    $header.addClass('header-hidden');
+
     calculateSectionOffsets(); // Calcular offsets após tudo carregado (imagens etc)
     handleScrollEffects();    // Aplicar efeitos iniciais (ex: se a página carregar já rolada)
     updateNavActiveState();   // Definir estado inicial do menu
+
+    // 2. Animar os elementos da intro após o carregamento da página
+    animateIntroElements();
   });
 
   // Usar um único listener de scroll debounced para múltiplas funções
