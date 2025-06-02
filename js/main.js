@@ -7,9 +7,13 @@
   const $body = $('body');
   const $header = $('#header');
   const $backToTop = $('.back-to-top');
-  let $sectionsToReveal = $('.section-hidden'); // Será atualizado dinamicamente
-  const $navSections = $('section[id]'); // Seções com ID para o menu de navegação
+  let $sectionsToReveal = $('.section-hidden'); 
+  const $navSections = $('section[id]'); 
   const $mainNav = $('.nav-menu, #mobile-nav');
+  
+  const $introElements = $('#intro .intro-element'); // Cache dos elementos da intro
+  let introElementsRevealed = false; // Flag para controlar a revelação dos elementos da intro
+  let pageScrolled = false; // Flag para verificar se o usuário já rolou a página alguma vez
 
   // --- Debounce Function ---
   function debounce(func, wait, immediate) {
@@ -27,36 +31,43 @@
     };
   }
 
-  // --- Funções de Animação de Entrada ao Carregar a Página ---
-  function animateIntroElements() {
-    // Adiciona a classe que revela os elementos da intro após um pequeno atraso
-    // Isso garante que eles comecem escondidos e só apareçam com uma transição suave
-    setTimeout(function() {
-      $('#intro .intro-element').removeClass('intro-element-hidden');
-    }, 500); // Começa a revelar os elementos da intro 500ms após o carregamento da página
-  }
+  // --- (Função animateIntroElements FOI REMOVIDA) ---
 
   // --- Efeitos de Scroll ---
   function handleScrollEffects() {
     const scrollY = $window.scrollTop();
-    const headerRevealThreshold = 50; // Quantos pixels de scroll para o header aparecer
-    const introContentRevealThreshold = 100; // Quantos pixels de scroll para o conteúdo da intro começar a ser revelado
+    
+    if (scrollY > 0 && !pageScrolled) { // Detecta o primeiro scroll
+        pageScrolled = true;
+    }
+
+    const headerRevealThreshold = 50; 
 
     // 1. Visibilidade e estilo do Header
     if ($header.length) {
-      if (scrollY > headerRevealThreshold) {
-        $header.removeClass('header-hidden').addClass('scroll-header');
+      // Revela o header se a página foi rolada ou se o scroll passou do threshold
+      if (pageScrolled || scrollY > headerRevealThreshold) { 
+        if (!$header.hasClass('scroll-header')) {
+          $header.addClass('scroll-header');
+        }
       } else {
-        $header.addClass('header-hidden').removeClass('scroll-header');
+        if ($header.hasClass('scroll-header')) {
+          $header.removeClass('scroll-header');
+        }
       }
     }
 
-    // 2. Escurecimento do overlay da Intro
-    const introElement = document.getElementById('intro'); // Vanilla JS para setProperty
+    // 2. Revelar elementos da Intro APÓS o primeiro scroll
+    if (pageScrolled && !introElementsRevealed) {
+      $introElements.removeClass('intro-element-hidden');
+      introElementsRevealed = true; 
+    }
+
+    // 3. Escurecimento do overlay da Intro (lógica mantida)
+    const introElement = document.getElementById('intro');
     if (introElement) {
-      const maxOverlayOpacity = 0.6; // Opacidade máxima do overlay (0.0 a 1.0)
-      const maxScrollForOverlay = window.innerHeight * 0.8; // Altura do scroll para atingir opacidade máxima
-      
+      const maxOverlayOpacity = 0.6;
+      const maxScrollForOverlay = window.innerHeight * 0.8;
       let newOverlayOpacity = 0;
       if (scrollY > 0) {
           newOverlayOpacity = Math.min(scrollY / maxScrollForOverlay, maxOverlayOpacity);
@@ -64,52 +75,48 @@
       introElement.style.setProperty('--overlay-opacity', newOverlayOpacity);
     }
 
-    // 3. Revelar Seções (otimizado)
-    // As seções 'section-hidden' só são reveladas quando o scroll passa delas
-    // O conteúdo da intro é revelado com `animateIntroElements`
+    // 4. Revelar Seções (lógica mantida)
     if ($sectionsToReveal.length) {
       const windowHeight = $window.height();
       $sectionsToReveal = $sectionsToReveal.filter(function() {
         const $section = $(this);
-        // Revela a seção se ela está a 100px acima da parte inferior da viewport
         if ($section.offset().top < scrollY + windowHeight - 100) {
           $section.addClass('section-visible').removeClass('section-hidden');
-          return false; // Remove da coleção $sectionsToReveal
+          return false; 
         }
-        return true; // Mantém na coleção
+        return true; 
       });
     }
   }
 
   // --- Estado Ativo da Navegação (Otimizado) ---
-  let sectionData = []; // Armazena dados das seções (id, top, bottom)
+  // (Suas funções calculateSectionOffsets e updateNavActiveState devem ser mantidas como estavam)
+  let sectionData = []; 
 
   function calculateSectionOffsets() {
-    sectionData = []; // Reset
+    sectionData = []; 
     const headerHeight = $header.length ? $header.outerHeight() : 0;
-    $navSections.each(function() {
-      const $section = $(this);
-      const sectionId = $section.attr('id');
-      if (sectionId) { // Garante que a seção tem um ID
-        sectionData.push({
-          id: sectionId,
-          // Ajuste de -20px para ativar um pouco antes de estar totalmente na tela,
-          // compensando a altura do header fixo.
-          top: $section.offset().top - headerHeight - 20,
-          bottom: $section.offset().top + $section.outerHeight() - headerHeight - 20,
+    // Adiciona uma verificação para $navSections.length para evitar erros se não houver seções de navegação
+    if ($navSections.length > 0) {
+        $navSections.each(function() {
+          const $section = $(this);
+          const sectionId = $section.attr('id');
+          if (sectionId) { 
+            sectionData.push({
+              id: sectionId,
+              top: $section.offset().top - headerHeight - 20,
+              bottom: $section.offset().top + $section.outerHeight() - headerHeight - 20,
+            });
+          }
         });
-      }
-    });
+    }
   }
 
   function updateNavActiveState() {
     const scrollY = $window.scrollTop();
     let currentSectionId = null;
 
-    // Lógica para o link "Home" (#intro)
-    // Considera a seção 'intro' ativa se o scroll estiver próximo do topo
-    // e nenhuma outra seção foi rolada para dentro da área de visibilidade
-    if (scrollY < sectionData[0].top + 50) { // Se o scroll está no topo ou logo após a intro
+    if (sectionData.length > 0 && scrollY < sectionData[0].top + 50) { 
         currentSectionId = 'intro';
     } else {
         for (let i = 0; i < sectionData.length; i++) {
@@ -118,7 +125,6 @@
             break;
           }
         }
-        // Se passou da última seção, mantém a última ativa
         if (!currentSectionId && sectionData.length > 0 && scrollY >= sectionData[sectionData.length - 1].top) {
             currentSectionId = sectionData[sectionData.length - 1].id;
         }
@@ -128,10 +134,10 @@
     if (currentSectionId) {
       $mainNav.find('a[href="#' + currentSectionId + '"]').parent('li').addClass('menu-active');
     }
-    // Não precisa de fallback adicional aqui, a lógica acima já cobre.
   }
 
   // --- Inicialização das Funcionalidades ---
+  // (Suas funções initBackToTop, initMobileNav, initSmoothScroll devem ser mantidas como estavam)
   function initBackToTop() {
     $window.scroll(function() {
       if ($(this).scrollTop() > 100) {
@@ -142,74 +148,75 @@
     });
     $backToTop.click(function(e){
       e.preventDefault();
-      $('html, body').animate({scrollTop : 0}, 800, 'easeInOutExpo'); // jQuery Easing plugin para 'easeInOutExpo'
+      $('html, body').animate({scrollTop : 0}, 800, 'easeInOutExpo'); 
     });
   }
 
   function initMobileNav() {
     if ($('#nav-menu-container').length) {
       const $mobileNavContainer = $('#nav-menu-container').clone().prop({ id: 'mobile-nav' });
-      $mobileNavContainer.find('> ul').attr({ 'class': '', 'id': '' }); // Limpa classes e IDs do ul clonado
+      $mobileNavContainer.find('> ul').attr({ 'class': '', 'id': '' }); 
       $body.append($mobileNavContainer);
       $body.prepend('<button type="button" id="mobile-nav-toggle"><i class="fa fa-bars"></i></button>');
-      $body.append('<div id="mobile-body-overly"></div>'); // Overlay
-      $('#mobile-nav').find('.menu-has-children').prepend('<i class="fa fa-chevron-down"></i>'); // Ícone para submenus
+      $body.append('<div id="mobile-body-overly"></div>'); 
+      $('#mobile-nav').find('.menu-has-children').prepend('<i class="fa fa-chevron-down"></i>'); 
 
-      // Eventos para o menu mobile
       $document.on('click', '.menu-has-children i', function(e) {
-        $(this).next().toggleClass('menu-item-active'); // Ativa o item do submenu
-        $(this).nextAll('ul').eq(0).slideToggle(); // Mostra/esconde submenu
-        $(this).toggleClass("fa-chevron-up fa-chevron-down"); // Troca o ícone
+        $(this).next().toggleClass('menu-item-active'); 
+        $(this).nextAll('ul').eq(0).slideToggle(); 
+        $(this).toggleClass("fa-chevron-up fa-chevron-down"); 
       });
 
       $document.on('click', '#mobile-nav-toggle', function(e) {
-        $body.toggleClass('mobile-nav-active'); // Ativa/desativa estado do menu mobile no body
-        $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars'); // Troca ícone do botão (hambúrguer/X)
-        $('#mobile-body-overly').toggle(); // Mostra/esconde overlay
+        $body.toggleClass('mobile-nav-active'); 
+        $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars'); 
+        $('#mobile-body-overly').toggle(); 
       });
 
-      // Fecha o menu mobile se clicar fora dele
-      $document.on('click', function(e) {
-        const container = $("#mobile-nav, #mobile-nav-toggle");
-        if (!container.is(e.target) && container.has(e.target).length === 0) { // Se o clique não foi no menu nem no botão
-          if ($body.hasClass('mobile-nav-active')) {
-            $body.removeClass('mobile-nav-active');
-            $('#mobile-nav-toggle i').removeClass('fa-times').addClass('fa-bars');
-            $('#mobile-body-overly').fadeOut();
-          }
+      // Fecha o menu mobile se clicar fora dele ou em um link do menu
+      $document.on('click', '#mobile-nav a, #mobile-body-overly', function(e) { // Adicionado #mobile-nav a
+        if ($body.hasClass('mobile-nav-active')) {
+            // Verifica se o clique foi em um link que não tem submenu ou no overlay
+            if ($(this).is('#mobile-body-overly') || !$(this).parent().hasClass('menu-has-children')) {
+                $body.removeClass('mobile-nav-active');
+                $('#mobile-nav-toggle i').removeClass('fa-times').addClass('fa-bars');
+                $('#mobile-body-overly').fadeOut();
+            }
         }
       });
+      // Previne que o clique no toggle feche o menu imediatamente se o evento propagar
+      $document.on('click', '#mobile-nav-toggle', function(e){
+          e.stopPropagation(); 
+      });
+
+
     } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
-      // Esconde se o container principal do menu não existir (caso raro)
       $("#mobile-nav, #mobile-nav-toggle").hide();
     }
   }
 
   function initSmoothScroll() {
-    // Seletor para todos os links de navegação (desktop, mobile, e outros com .scrollto)
     $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function(e) {
       if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-        const target = $(this.hash); // O elemento alvo (ex: <section id="about">)
+        const target = $(this.hash); 
         if (target.length) {
-          e.preventDefault(); // Previne o comportamento padrão do link
+          e.preventDefault(); 
           let top_space = 0;
-          if ($header.length && $header.css('position') === 'fixed') { // Considera a altura do header fixo
+          if ($header.length && $header.css('position') === 'fixed') { 
             top_space = $header.outerHeight();
+            if (!$header.hasClass('scroll-header')) { // Se o header ainda não apareceu, considera sua altura mesmo assim
+                // Isso pode precisar de ajuste se a altura do header mudar quando 'scroll-header' é adicionado
+            }
           }
           $('html, body').animate({
             scrollTop: target.offset().top - top_space
           }, 800, 'easeInOutExpo');
 
-          // Atualiza classe 'menu-active' e fecha menu mobile
           if ($(this).parents('.nav-menu').length) {
             $('.nav-menu .menu-active').removeClass('menu-active');
             $(this).closest('li').addClass('menu-active');
           }
-          if ($body.hasClass('mobile-nav-active')) {
-            $body.removeClass('mobile-nav-active');
-            $('#mobile-nav-toggle i').removeClass('fa-times').addClass('fa-bars');
-            $('#mobile-body-overly').fadeOut();
-          }
+          // A lógica de fechar o menu mobile ao clicar em um link já foi integrada em initMobileNav
         }
       }
     });
@@ -217,32 +224,24 @@
 
   // --- Execução e Event Listeners ---
   $window.on('load', function() {
-    // 1. Inicializa o header como oculto
-    $header.addClass('header-hidden');
-
-    calculateSectionOffsets(); // Calcular offsets após tudo carregado (imagens etc)
-    handleScrollEffects();    // Aplicar efeitos iniciais (ex: se a página carregar já rolada)
-    updateNavActiveState();   // Definir estado inicial do menu
-
-    // 2. Animar os elementos da intro após o carregamento da página
-    animateIntroElements();
+    calculateSectionOffsets();
+    handleScrollEffects(); // Chamada inicial para o caso da página carregar já rolada e para o overlay
+    updateNavActiveState();
+    // (Chamada para animateIntroElements FOI REMOVIDA)
   });
 
-  // Usar um único listener de scroll debounced para múltiplas funções
   const debouncedScrollHandler = debounce(function() {
     handleScrollEffects();
     updateNavActiveState();
-  }, 15); // 15ms é um bom valor para responsividade sem sobrecarregar
+  }, 15);
   $window.on('scroll', debouncedScrollHandler);
 
-  // Recalcular offsets das seções em resize da janela
   const debouncedResizeHandler = debounce(function() {
     calculateSectionOffsets();
-    updateNavActiveState(); // Também atualiza o nav para o caso de a seção ativa mudar com o resize
+    updateNavActiveState(); 
   }, 200);
   $window.on('resize', debouncedResizeHandler);
 
-  // Inicializar componentes que não dependem primariamente de scroll/resize para sua configuração inicial
   initBackToTop();
   initMobileNav();
   initSmoothScroll();
