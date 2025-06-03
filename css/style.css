@@ -102,35 +102,38 @@ section {
   height: 70px; /* Ou a altura que você definiu */
   width: 100%;
   z-index: 1000;
-  background: transparent; /* Começa transparente */
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 15px 20px; /* Mantido do seu original */
+  display: flex; /* Mantido do seu original */
+  align-items: center; /* Mantido do seu original */
+  justify-content: space-between; /* Mantido do seu original */
   
-  /* Transições para todas as propriedades que vão mudar */
+  /* ESTADO INICIAL TRANSPARENTE */
+  background: transparent; 
+  backdrop-filter: none; /* Sem desfoque inicialmente */
+  
   transition: opacity 0.5s ease, background-color 0.5s ease, backdrop-filter 0.5s ease, transform 0.6s ease-out, visibility 0s linear 0.6s;
   
-  /* Estado inicial: escondido */
+  /* ESTADO INICIAL OCULTO PARA ANIMAÇÃO DE ENTRADA */
   opacity: 0;
-  transform: translateY(-100%); /* Move o header para cima, para fora da tela */
-  pointer-events: none; /* Não permite interações quando escondido */
-  visibility: hidden; /* Realmente esconde o elemento */
+  transform: translateY(-100%); 
+  pointer-events: none; 
+  visibility: hidden; 
 }
 
-/* Quando o header deve aparecer (classe adicionada via JS) */
 #header.scroll-header {
-  background-color: rgba(17, 17, 17, 0.85); /* Cor de fundo com blur */
-  backdrop-filter: blur(5px);
-  opacity: 1; /* Torna visível */
-  transform: translateY(0); /* Volta para a posição original */
-  pointer-events: all; /* Permite interações */
+  /* ESTADO AO ROLAR A PÁGINA */
+  background-color: #111; /* Cor preta/escura sólida. Use rgba(17, 17, 17, 0.85) se quiser com transparência */
+  /* backdrop-filter: blur(5px); */ /* Removido ou comentado se quiser fundo sólido sem desfoque */
+  
+  opacity: 1; 
+  transform: translateY(0); 
+  pointer-events: all; 
   visibility: visible;
-  transition-delay: 0s; /* Remove qualquer delay na transição de visibilidade ao se tornar visível */
+  transition-delay: 0s; 
 }
 
 #logo {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin: 0;
   padding: 0;
   line-height: 1;
@@ -143,40 +146,45 @@ section {
   text-decoration: none;
 }
 
-.nav-menu * {
+/*#nav-menu-container {
+  /* Garante que o container do menu tem espaço 
+}*/
+
+.nav-menu ul {
+  display: flex; /* Faz os <li> ficarem em linha */
+  align-items: center; /* Alinha os <li> verticalmente ao centro */
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.nav-menu ul {
-  display: flex;
-  align-items: center;
-}
-
 .nav-menu li {
-  position: relative;
-  white-space: nowrap;
-  padding: 0 15px;
+  position: relative; /* Mantido do seu original */
+  white-space: nowrap; /* Mantido do seu original */
+  padding: 0 15px; /* Espaçamento entre os itens do menu. Mantido do seu original */
+  margin: 0; /* Adicionado para evitar margens inesperadas */
 }
 
 .nav-menu a {
-  color: rgba(255, 255, 255, 0.7);
-  font-family: 'Overpass', sans-serif;
-  font-size: 1rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  padding: 10px 0;
-  transition: 0.3s;
+  color: rgba(255, 255, 255, 0.7); /* Mantido do seu original */
+  font-family: 'Overpass', sans-serif; /* Mantido do seu original */
+  font-size: 1rem; /* Mantido do seu original */
+  text-transform: uppercase; /* Mantido do seu original */
+  font-weight: 600; /* Mantido do seu original */
+  padding: 10px 0; /* Mantido do seu original - padding vertical nos links */
+  transition: 0.3s; /* Mantido do seu original */
+  text-decoration: none; /* Garante que não haja sublinhado por padrão */
+  display: inline-block; /* Permite padding e não quebra a linha, funcionando bem com o flex pai */
 }
 
+/* Estilos de hover e menu ativo (mantenha os seus) */
 .nav-menu a:hover,
 .nav-menu .menu-active > a,
 .nav-menu li:hover > a {
   color: #fff;
 }
 
-.nav-menu a::after {
+.nav-menu a::after { /* Efeito de sublinhado */
   content: '';
   display: block;
   width: 0;
@@ -682,9 +690,9 @@ body.mobile-nav-active #mobile-nav {
   left: 0; 
   right: auto; /* Ajustado para não forçar preenchimento total se não desejado */
 }
-body.mobile-nav-active #mobile-nav-toggle i { /* Estilo para ícone X */
-  /* color: #800020; */ /* O JS troca a classe fa-bars por fa-times, o estilo do ícone X pode ser diferente se necessário */
-}
+/*body.mobile-nav-active #mobile-nav-toggle i { /* Estilo para ícone X */
+  /* color: #800020; */ /* O JS troca a classe fa-bars por fa-times, o estilo do ícone X pode ser diferente se necessário 
+}*/
 body.mobile-nav-active #mobile-body-overly {
   display: block; 
 }
